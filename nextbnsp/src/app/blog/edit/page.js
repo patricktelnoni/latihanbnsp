@@ -7,7 +7,7 @@ export default function EditBlogPage({ params})  {
 
     const id = params.id
 
-    useffect(() => {
+    useEffect(() => {
         // Fetch existing blog post data here using an ID from params or similar
         // Populate form fields with fetched data
         const fetchBlogPost = async () => {

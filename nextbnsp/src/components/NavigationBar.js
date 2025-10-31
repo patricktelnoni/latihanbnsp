@@ -13,6 +13,9 @@ const NavigationBar = () => {
       <Link href="/about/schools" className="text-blue-500 underline">
         Contact Us
       </Link>
+      <Link href="/blog/read" className="text-blue-500 underline">
+        Read Blog
+      </Link>
     </div>
     );
 }

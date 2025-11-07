@@ -16,6 +16,9 @@ const NavigationBar = () => {
       <Link href="/blog/read" className="text-blue-500 underline">
         Read Blog
       </Link>
+      <Link href="/blog/gallery" className="text-blue-500 underline">
+        Gallery
+      </Link>
     </div>
     );
 }

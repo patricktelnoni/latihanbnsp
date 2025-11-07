@@ -5,9 +5,9 @@ import Link from "next/link";
 
 
 export default function ReadBlogPage() {
-    const [data, setData] = useState(null);
+    const [data, setData]       = useState(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [error, setError]     = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -85,7 +85,6 @@ export default function ReadBlogPage() {
                     )}
                 </table>
             </div>
-        
         </div>
     );  
 }

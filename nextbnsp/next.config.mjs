@@ -2,7 +2,19 @@
 const nextConfig = {
   /* config options here */
    images: {
-    domains: ['picsum.photos', 'palugada.me'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'palugada.me',
+        pathname: '**',
+      },
+    ],
+    
   },
 };
 

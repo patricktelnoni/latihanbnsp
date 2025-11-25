@@ -1,57 +1,75 @@
 "use client";
 
-import { useRouter } from 'next/navigation';
-import React from 'react';
+import {redirect, useRouter} from 'next/navigation';
+import React, {useState} from 'react';
+import SideBar from "@/components/SideBar";
+import NavigationBar from "@/components/NavigationBar";
 
 export default function CreateBlogPage() {
 
   const router = useRouter();
 
-  const handleSubmit = async (event) => {
-        event.preventDefault();
-        const name = event.target.name.value;
-        const description = event.target.description.value;
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
+    const [user_id, setUsers] = useState(1);
 
-        try {
-            const response = await fetch(`https://palugada.me/api/products/`, {
+    const handleSubmit = async (e) => {
+        try{
+            e.preventDefault();
+            const response = await fetch('https://palugada.me/api/posts/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ name, description }),
+                body: JSON.stringify({title, content, user_id}),
             });
+            console.log(response);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            if(response.status === 200){
-                console.log('Blog post updated successfully');
+            else{
                 router.push('/blog/read');
             }
-            // Optionally redirect or show success message
-        } catch (err) {
-            console.error('Failed to update blog post:', err);
+        }
+        catch(err){
+            console.log(err);
         }
     }
-
     return (
-        <div className="w-full max-w-lg">
-            <h1>Create Blog Post</h1>
-            <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" 
-              onSubmit={handleSubmit}>
-                <div className="grid grid-cols-2 gap-2 mb-4">
-                    <label htmlFor="name">Name:</label>
-                    <input className="border border-gray-300 p-2 rounded" type="text" id="name" name="name" required />
+        <div className="container mx-auto flex-2">
+            <div className="grid grid-cols-[25%_75%] ">
+                <div><SideBar /></div>
+                <div>
+                    <NavigationBar />
+                    <h1>Welcome to Next.js!</h1>
+                    <p className="text-line-600 text-4xl font-bold">Form Tambah Post</p>
+                    <form onSubmit={handleSubmit}>
+                        <div className="flex flex-wrap gap-4 mt-4">
+                            <input
+                                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-500 resize-none"
+                                id="inline-full-name"
+                                type="text"
+                                placeholder="Enter title"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                            />
+                        </div>
+
+                        <div className="flex flex-wrap gap-4 mt-4">
+                          <textarea
+                              value={content}
+                              onChange={(e) => setContent(e.target.value)}
+                              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-500 resize-none"
+                              rows="4"
+                              placeholder="Enter your message here..."
+                          ></textarea>
+                        </div>
+                        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300" onSubmit={handleSubmit}>
+                            Submit
+                        </button>
+                    </form>
                 </div>
-                <div className="grid grid-cols-2 gap-2">
-                    <label htmlFor="description">Description:</label>
-                    <textarea className="border border-gray-300 p-2 rounded" id="description" name="description" rows="3" required></textarea>
-                </div>
-                <button 
-                
-                type="submit"
-                className="ext-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                >Create</button>
-            </form>
+            </div>
         </div>
     );
 }

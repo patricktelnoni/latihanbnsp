@@ -5,20 +5,21 @@ import Link from "next/link";
 
 
 export default function ReadBlogPage() {
-    const [data, setData]       = useState(null);
+    const [posts, setPosts]       = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError]     = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://palugada.me/api/products');
+                const response = await fetch('https://palugada.me/api/posts');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const result = await response.json();
-                console.log();
-                setData(result['data']);
+
+                setPosts(result['data']);
+                console.log(data);
             } catch (err) {
                 setError(err);
             } finally {
@@ -32,7 +33,7 @@ export default function ReadBlogPage() {
         console.log(`Delete item with id: ${id}`);
         // Implement delete functionality here
         try{
-            const response = await fetch(`https://palugada.me/api/products/${id}`, {
+            const response = await fetch(`https://palugada.me/api/posts/${id}`, {
                 method: 'DELETE',
             });
             if (!response.ok) {
@@ -48,43 +49,53 @@ export default function ReadBlogPage() {
     }
 
     return (
-        <div>
-        <h1>Read Blog Posts</h1>
-        <p>Welcome to the blog! Here you can read various blog posts.</p>
-            <Link 
-                href="/blog/create"
-                className="content-stretch mt-10 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                    Create New Blog Post
-            </Link>
-            {loading && <p>Loading...</p>}
-            {error && <p>Error: {error.message}</p>}
-            <div className='flex justifiy-center ml-20'>   
-                <table className='table-auto table-fixed border-collapse border border-slate-400 mt-10'>
-                    <thead>
-                        <tr>
-                            <th className='border-b border-gray-200 p-4 pt-0 pb-3 pl-8 text-left font-medium text-gray-400 dark:border-gray-600 dark:text-gray-200'>ID</th>
-                            <th className='border-b border-gray-200 p-4 pt-0 pb-3 pl-8 text-left font-medium text-gray-400 dark:border-gray-600 dark:text-gray-200'>Name</th>
-                            <th className='border-b border-gray-200 p-4 pt-0 pb-3 pl-8 text-left font-medium text-gray-400 dark:border-gray-600 dark:text-gray-200'>Description</th>
-                            <th className='border-b border-gray-200 p-4 pt-0 pb-3 pl-8 text-left font-medium text-gray-400 dark:border-gray-600 dark:text-gray-200'>Action</th>
-                        </tr>
-                    </thead>
-                    {data && (
-                        <tbody>
-                            {data.map((item) => (
-                            <tr key={item.id}>
-                                <td className='border-b border-gray-100 p-4 pl-8 text-gray-500 dark:border-gray-700 dark:text-gray-400'>{item.id}</td>
-                                <td className='border-b border-gray-100 p-4 pl-8 text-gray-500 dark:border-gray-700 dark:text-gray-400'>{item.name}</td>
-                                <td className='border-b border-gray-100 p-4 pl-8 text-gray-500 dark:border-gray-700 dark:text-gray-400'>{item.description}</td>
-                                <td className='border-b border-gray-100 p-4 pl-8 text-gray-500 dark:border-gray-700 dark:text-gray-400'>
-                                    <Link href={`/blog/edit/${item.id}`}>Edit</Link> &nbsp;
-                                    <button onClick={() => handleDelete(item.id)} className='text-red-500 hover:text-red-700'>Delete</button>
-                                </td>
-                            </tr>
-                            ))}
-                        </tbody>
-                    )}
-                </table>
+
+        <div className="bg-white py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto max-w-2xl lg:mx-0">
+                    <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">From the blog</h2>
+                    <p className="mt-2 text-lg/8 text-gray-600">Learn how to grow your business with our expert advice.</p>
+                </div>
+                <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                    {posts?.map((post) => (
+                        <article key={post.id} className="flex max-w-xl flex-col items-start justify-between">
+                            <div className="flex items-center gap-x-4 text-xs">
+                                <time dateTime={post.datetime} className="text-gray-500">
+                                    {post.created_at}
+                                </time>
+                                <a
+                                    href=""
+                                    className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
+                                >
+                                    {post.title}
+                                </a>
+                            </div>
+                            <div className="group relative grow">
+                                <h3 className="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
+                                    <a href={post.href}>
+                                        <span className="absolute inset-0" />
+                                        {post.title}
+                                    </a>
+                                </h3>
+                                <p className="mt-5 line-clamp-3 text-sm/6 text-gray-600">{post.description}</p>
+                            </div>
+                            <div className="relative mt-8 flex items-center gap-x-4 justify-self-end">
+
+                                <div className="text-sm/6">
+                                    <p className="font-semibold text-gray-900">
+                                        <a href={post.title}>
+                                            <span className="absolute inset-0" />
+                                            {post.title}
+                                        </a>
+                                    </p>
+                                    <p className="text-gray-600">{post.created_at}</p>
+                                </div>
+                            </div>
+                        </article>
+                    ))}
+                </div>
             </div>
         </div>
+
     );  
 }

@@ -26,11 +26,11 @@ export default function Dashboard(){
     return (
         <div className="container mx-auto flex-2">
             {data && (
-                <div className="grid grid-cols-1 gap-2.5 md:grid-cols-3">
+                <div className="grid grid-cols-3 gap-2.5 xl:grid-cols-3">
                 {data.map((project) => (
                     <ProjectTile
                         key={project.id}
-                        nama_paket={project.nama_paket.substring(0, 10)}
+                        nama_paket={project.nama_paket}
                         nomor_kontrak={project.nomor_kontrak}
                         progress={project.persentase_progress}
                         tanggal_kontrak={project.tanggal_kontrak}

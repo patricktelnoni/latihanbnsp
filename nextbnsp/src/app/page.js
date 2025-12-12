@@ -102,11 +102,11 @@ export default function HomePage() {
 
                             {/* Featured Articles Section */}
                             <div className="w-full mt-[40px] sm:mt-[60px] lg:mt-[80px]">
-                                <div className="grid grid-cols-2 lg:flex-row justify-between items-start lg:items-center gap-6 lg:gap-8 w-full">
+                                <div className="grid grid-cols-2 scale-130 lg:flex-row justify-between items-start lg:items-center gap-6 lg:gap-8 w-full">
 
                                     {/* Left Article */}
                                     {posts && posts.map((post) => (
-                                        <article key={[post.id]} className="flex flex-col gap-4 sm:gap-5 lg:gap-[20px] justify-start items-center w-full lg:w-[46%]">
+                                        <article key={[post.id]} className="flex flex-col gap-4 ml-4 sm:gap-5 lg:gap-[20px] justify-start items-center w-full lg:w-[46%]">
                                             <div className="w-full">
                                                 <Image
                                                     src={Kelingking}

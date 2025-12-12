@@ -1,0 +1,123 @@
+@import "tailwindcss";
+@import "tailwindcss/preflight";
+
+@layer base {
+    :root {
+        /* Global Text Colors */
+        --text-primary: #000000;
+        --text-secondary: #000538;
+        --text-muted: #424242;
+        --text-light: #505050;
+        --text-medium: #5e5e5e;
+        --text-brown: #5f5b58;
+        --text-brown-alt: #605c59;
+        --text-white-overlay: #ffffffd8;
+
+        /* Global Background Colors */
+        --bg-primary: #283a61;
+        --bg-light: #fdfdfd;
+        --bg-white: #ffffff;
+
+        /* Global Border Colors */
+        --border-light: #dddddd;
+
+        /* Typography Variables */
+        --font-size-xs: 14px;
+        --font-size-sm: 16px;
+        --font-size-md: 18px;
+        --font-size-lg: 20px;
+        --font-size-xl: 24px;
+        --font-size-2xl: 48px;
+
+        /* Font Weight Variables */
+        --font-weight-normal: 400;
+        --font-weight-medium: 500;
+        --font-weight-bold: 700;
+        --font-weight-black: 900;
+
+        /* Line Height Variables */
+        --line-height-xs: 17px;
+        --line-height-sm: 18px;
+        --line-height-md: 22px;
+        --line-height-lg: 23px;
+        --line-height-xl: 24px;
+        --line-height-2xl: 25px;
+        --line-height-3xl: 33px;
+        --line-height-4xl: 61px;
+
+        /* Spacing Variables - Margin */
+        --margin-xs: 8px;
+        --margin-sm: 10px;
+        --margin-md: 14px;
+        --margin-lg: 16px;
+        --margin-xl: 52px;
+        --margin-2xl: 80px;
+        --margin-3xl: 96px;
+
+        /* Spacing Variables - Padding */
+        --padding-xs: 2px;
+        --padding-sm: 16px;
+        --padding-md: 28px;
+        --padding-lg: 46px;
+        --padding-xl: 56px;
+        --padding-2xl: 58px;
+        --padding-3xl: 208px;
+
+        /* Spacing Variables - Gap */
+        --gap-xs: 8px;
+        --gap-sm: 16px;
+        --gap-md: 20px;
+
+        /* Border Radius Variables */
+        --radius-xs: 3px;
+        --radius-sm: 5px;
+        --radius-md: 20px;
+
+        /* Border Width Variables */
+        --border-width-thin: 1px;
+
+        /* Layout Variables - Width */
+        --width-auto: auto;
+        --width-full: 100%;
+        --width-flex: flex-1;
+        --width-sm: 132px;
+        --width-md: 42px;
+        --width-lg: 38%;
+        --width-xl: 46%;
+        --width-2xl: 74%;
+
+        /* Layout Variables - Height */
+        --height-flex: flex-1;
+
+        /* Component-specific Variables - Header */
+        --header-width: flex-1;
+
+        /* Component-specific Variables - Logo */
+        --logo-width: 132px;
+
+        /* Component-specific Variables - HeaderMenu */
+        --header-menu-text: #5f5b58;
+        --header-menu-font-size: 18px;
+        --header-menu-font-weight: 400;
+        --header-menu-line-height: 22px;
+        --header-menu-gap: 20px;
+        --header-menu-width: auto;
+
+        /* Component-specific Variables - SearchView */
+        --search-text: #5e5e5e;
+        --search-bg: #fdfdfd;
+        --search-border: #dddddd;
+        --search-font-size: 18px;
+        --search-line-height: 23px;
+        --search-radius: 5px;
+        --search-width: 38%;
+
+        /* Component-specific Variables - Button */
+        --button-text: #ffffffd8;
+        --button-bg: #283a61;
+        --button-font-size: 14px;
+        --button-font-weight: 500;
+        --button-line-height: 17px;
+        --button-radius: 3px;
+    }
+}

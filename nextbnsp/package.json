@@ -11,11 +11,15 @@
   },
   "dependencies": {
     "@ramonak/react-progress-bar": "^5.4.0",
+    "class-variance-authority": "^0.7.1",
+    "cva": "^0.0.0",
+    "gsap": "^3.13.0",
     "next": "16.0.1",
     "react": "19.2.0",
     "react-circle-progress-bar": "^0.1.4",
     "react-circular-progressbar": "^2.2.0",
-    "react-dom": "19.2.0"
+    "react-dom": "19.2.0",
+    "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
